@@ -19,22 +19,32 @@ Server startup script!  Copy the following script into a file, run `chmod a+x sc
     cd ~/
     git clone git@github.com:alukach/.mySetup.git
     
-    if [ -e "~/.mySetup/backups" ];
+    # .backups folder
+    if [ -e "~/.mySetup/.backups" ];
     then
-      mkdir ~/.mySetup/backups
+      mkdir ~/.mySetup/.backups
     fi
     
+    # .vimrc
     if [ -e "~/.vimrc" ]; # If there are no keys created
     then
-      mv ~/.vimrc ~/.mySetup/backups
+      mv ~/.vimrc ~/.mySetup/.backups
     fi
     ln -s ~/.mySetup/.vim/.vimrc ~/.vimrc
     
+    # .bashrc
+    if [ -e "~/.bashrc" ];
+    then
+      mv ~/.bashrc ~/.mySetup/.backups
+    fi
+    ln -s ~/.mySetup/.bashrc ~/
+
+    # .bash_profile
     if [ -e "~/.bash_profile" ];
     then
-      mv ~/.bash_profile ~/.mySetup/backups
+      mv ~/.bash_profile ~/.mySetup/.backups
     fi
-    ln -s ~/.mySetup/.bash_profile
+    ln -s ~/.mySetup/.bash_profile ~/
 
 
 Desktop
