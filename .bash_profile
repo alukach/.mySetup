@@ -1,6 +1,6 @@
 # Rearrange Python path to point to newer Python install (http://www.thisisthegreenroom.com/2011/installing-python-numpy-scipy-matplotlib-and-ipython-on-lion/)
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/share/python:$PATH
+#export PATH=/usr/local/bin:$PATH
+#export PATH=/usr/local/share/python:$PATH
 
 # Colors
 export CLICOLOR=1
