@@ -7,14 +7,14 @@ Server startup script!  Copy the following script into a file, run `chmod a+x sc
 
     sudo apt-get -y update
     sudo apt-get -y upgrade
-    sudo apt-get -y install git git-core git-gui git-doc # Distributed Revision Control / Source Code Management
     
     if [ ! -e "~/.ssh/id_rsa.pub" ]; # If there are no keys created 
     then 
       ssh-keygen -t rsa -C "anthonylukach@gmail.com" -N '' -f ~/.ssh/id_rsa # Generate key with no password, worried about the "-N ''" part, is password being set as the literal "''"? 
     fi 
-     
-    sudo apt-get install -y git 
+    
+    sudo apt-get -y install git git-core git-gui git-doc # Distributed Revision Control / Source Code Management
+    
     git config --global user.name "Anthony Lukach"
     git config --global user.email "anthonylukach@gmail.com"
     git config --global credential.helper 'cache --timeout=3600'
