@@ -1,16 +1,14 @@
 mySetup Profile
 =================
 
-Server
-------
-Server startup script!  Copy the following script into a file, run `chmod a+x script.sh`, and run the script!
+To run setup scripts, copy and paste the following script into your home directory (~/), run chmod a+x script.sh, and then run the script.  This will clone this repo, from which you can run either the server or the desktop set scripts.
 
     sudo apt-get -y update
     sudo apt-get -y upgrade
     
     if [ ! -e "~/.ssh/id_rsa.pub" ]; # If there are no keys created 
     then 
-      ssh-keygen -t rsa -C "anthonylukach@gmail.com" -N '' -f ~/.ssh/id_rsa # Generate key with no password, worried about the "-N ''" part, is password being set as the literal "''"? 
+      ssh-keygen -t rsa -C "anthonylukach@gmail.com" -N '' -f ~/.ssh/id_rsa # Generate key with no password 
     fi 
     
     sudo apt-get -y install git git-core git-gui git-doc # Distributed Revision Control / Source Code Management
@@ -25,36 +23,4 @@ Server startup script!  Copy the following script into a file, run `chmod a+x sc
     read 
      
     cd ~/ 
-    git clone git@github.com:alukach/.mySetup.git 
-     
-    # .backups folder 
-    if [ -e "~/.mySetup/.backups" ]; 
-    then 
-      mkdir ~/.mySetup/.backups 
-    fi 
-     
-    # .vimrc
-    if [ -e "~/.vimrc" ]; # If there are no keys created
-    then
-      mv ~/.vimrc ~/.mySetup/.backups
-    fi
-    ln -s ~/.mySetup/.vim/.vimrc ~/.vimrc
-
-    # .bashrc
-    if [ -e "~/.bashrc" ];
-    then
-      mv ~/.bashrc ~/.mySetup/.backups
-    fi
-    ln -s ~/.mySetup/.bashrc ~/
-
-    # .bash_profile
-    if [ -e "~/.bash_profile" ];
-    then
-      mv ~/.bash_profile ~/.mySetup/.backups
-    fi
-    ln -s ~/.mySetup/.bash_profile ~/
-
-Desktop
--------
-
-Run desktopStartup.sh script!
+    git clone git@github.com:alukach/.mySetup.git
