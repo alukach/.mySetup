@@ -1,1 +1,0 @@
-/home/anthony/.mySetup/.bashrc
