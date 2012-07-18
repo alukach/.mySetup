@@ -50,6 +50,11 @@ endtry
 
 set ffs=unix,dos,mac "Default file types
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax Highlighting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.less set filetype=less
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
