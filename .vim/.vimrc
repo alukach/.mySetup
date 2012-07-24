@@ -31,6 +31,8 @@ set incsearch "Make search act like search in modern browsers
 
 set number "Line numbers
 
+nmap <C-N><C-N> :set invnumber<CR> "Toggle Line numbers
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
