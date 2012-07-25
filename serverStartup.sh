@@ -19,7 +19,7 @@ echo "#! Running setupVim.sh..."
 echo "#! Running setupBash.sh..."
 `cd $1; pwd`/.mySetup/.subscripts/setupBash.sh
 
-echo "#! Adding UbuntuGIS PPA"
+echo "#! Adding UbuntuGIS PPA..."
 sudo apt-get install python-software-properties
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 
@@ -35,4 +35,5 @@ sudo apt-get -y install libxml2-dev proj libjson0-dev xsltproc docbook-xsl docbo
 echo "#! Installing common dev libraries..."
 sudo apt-get -y install libgeos-dev # Needed for a lot of python packages (ex. Twisted)
 
-#sudo pip install ipython virtualenvwrapper
+echo "#! Install favorite apps..."
+sudo apt-get -y install byobu ipython virtualenvwrapper 
