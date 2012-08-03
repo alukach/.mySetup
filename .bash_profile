@@ -79,3 +79,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+
+# Run custom script, if it exists.
+# This is intended to be a script that only applies to this specific machine.  It is thus placed outside of the .mySetup repo.
+
+startupScript=$HOME/".startupCommands.sh"
+if [ -e $startupScript ]
+then
+  source $startupScript
+fi
+
+
