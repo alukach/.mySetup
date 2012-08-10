@@ -5,6 +5,8 @@ These scripts set up a Desktop or Server version of Ubuntu with preferred softwa
 
 To run setup scripts, copy and paste the following script into your home directory (`~/`), run `chmod a+x script.sh`, and then execute the script.  This will clone this repo, from which you can run either the `serverStartup.sh` or the `desktopStartup.sh` scripts.
 
+    #!/bin/bash
+    
     sudo apt-get -y update
     sudo apt-get -y upgrade
     
