@@ -1,10 +1,27 @@
-# Rearrange Python path to point to newer Python install (http://www.thisisthegreenroom.com/2011/installing-python-numpy-scipy-matplotlib-and-ipython-on-lion/)
-#export PATH=/usr/local/bin:$PATH
-#export PATH=/usr/local/share/python:$PATH
+#Check OS
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='mac'
+elif [[ "$unamestr" == 'Debian' ]]; then
+   platform='debian'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+   platform='freebsd'
+fi
 
-# Mac Colors
-export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+# Rearrange Python path to point to newer Python install (http://www.thisisthegreenroom.com/2011/installing-python-numpy-scipy-matplotlib-and-ipython-on-lion/)
+if [[ $platform == 'mac' ]]; then
+    export PATH=/usr/local/Cellar:$PATH
+    export PATH=/usr/local/bin:$PATH
+    export PATH=/usr/local/share/python:$PATH
+
+    # Mac Colors
+    export CLICOLOR=1
+    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+fi
+
 
 # aliases
 alias cd..="cd .."
@@ -89,5 +106,3 @@ if [ -e $startupScript ]
 then
   source $startupScript
 fi
-
-

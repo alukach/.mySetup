@@ -65,7 +65,18 @@ au BufNewFile,BufRead *.less set filetype=less
 set expandtab
 set shiftwidth=4
 set tabstop=4
-"set smarttab
+
+" nnoremap <leader><Tab> :call ToggleSmartTab()<CR>
+" function! ToggleSmartTab()
+"   if smarttab
+"     set nosmarttab
+"     echo "SmartTab off"
+"   else
+"     set smarttab
+"     echo "SmartTab on"
+"   endif
+" endfunction
+
 
 set pastetoggle=<leader>p "Toggle paste indent
 set showmode
@@ -154,6 +165,18 @@ map <C-A-H> <C-w>h<C-w>\|
 map <C-A-L> <C-w>l<C-w>\| 
 
 map <C-P> :set scrollbind<CR>
+
+" Toggle Mouse...
+nnoremap <leader>m :call ToggleMouse()<CR>
+function! ToggleMouse()
+  if &mouse == 'a'
+    set mouse=
+    echo "Mouse usage disabled"
+  else
+    set mouse=a
+    echo "Mouse usage enabled"
+  endif
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
