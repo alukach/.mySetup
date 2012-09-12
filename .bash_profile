@@ -28,6 +28,7 @@ alias cd..="cd .."
 alias l="ls -al"
 alias lp="ls -p"
 alias h=history
+alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
 
 # virtualenv aliases
 # http://blog.doughellmann.com/2010/01/virtualenvwrapper-tips-and-tricks.html
