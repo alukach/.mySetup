@@ -2,6 +2,25 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+#Check OS
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='mac'
+elif [[ "$unamestr" == 'Debian' ]]; then
+   platform='debian'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+   platform='freebsd'
+fi
+
+
+if [[ $platform == 'linux' ]]; then
+    export WORKON_HOME='/home/projects/environments'
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
