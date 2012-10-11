@@ -15,11 +15,33 @@ fi
 if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/Cellar:$PATH
     export PATH=/usr/local/bin:$PATH
+    export PATH=/usr/local/sbin:$PATH
     export PATH=/usr/local/share/python:$PATH
 
     # Mac Colors
     export CLICOLOR=1
     export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+    # EC2
+    export JAVA_HOME="$(/usr/libexec/java_home)"
+    export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
+    export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
+    export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
+
+    #VirtualEnvWrapper
+    # Setting up the VirtualEnv
+    export WORKON_HOME=$HOME/.virtualenvs
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+    export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+    export PIP_VIRTUALENV_BASE=$WORKON_HOME
+    export PIP_RESPECT_VIRTUALENV=true
+    
+    if [[ -r /usr/local/share/python/virtualenvwrapper.sh ]]; then
+        source /usr/local/share/python/virtualenvwrapper.sh
+    else
+        echo "WARNING: Can't find virtualenvwrapper.sh"
+    fi
+
 fi
 
 

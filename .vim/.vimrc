@@ -182,7 +182,3 @@ endfunction
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "filetype plugin indent on
-"
-"call pathogen#infect()
-"call pathogen#helptags()
-"call pathogen#runtime_append_all_bundles()
