@@ -1,3 +1,9 @@
+#!/bin/bash
+# Import local settings (i.e. things not to be placed on Github)
+if [[ -a ./.local_bash_profile ]]; then
+    . ./.local_bash_profile
+fi
+
 #Check OS
 platform='unknown'
 unamestr=`uname`
@@ -42,6 +48,13 @@ if [[ $platform == 'mac' ]]; then
         echo "WARNING: Can't find virtualenvwrapper.sh"
     fi
 
+    # Tree Utility
+    function tree(){
+      ls -R $1 | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/';
+    }
+    function fulltree(){
+      find $1 -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+    }
 fi
 
 
