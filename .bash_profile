@@ -1,8 +1,4 @@
 #!/bin/bash
-# Import local settings (i.e. things not to be placed on Github)
-if [[ -a ./.local_bash_profile ]]; then
-    . ./.local_bash_profile
-fi
 
 #Check OS
 platform='unknown'
@@ -134,11 +130,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
-# Run custom script, if it exists.
-# This is intended to be a script that only applies to this specific machine.  It is thus placed outside of the .mySetup repo.
-
-startupScript=$HOME/".startupCommands.sh"
-if [ -e $startupScript ]
-then
-  source $startupScript
+# Import local settings (i.e. things not to be placed on Github)
+if [[ -a $HOME/.local_bash_profile ]]; then
+    . $HOME/.local_bash_profile
 fi
