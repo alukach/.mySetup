@@ -125,7 +125,8 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 set guitablabel=%t
 
 " Tabs
-nmap <C-t> :tabnew .<CR>
+nmap <C-t> :tabnew<CR>
+nmap <C-y> :tabnew .<CR>
 nmap - :tabp<cr>
 nmap = :tabn<cr>
 " Move tabs

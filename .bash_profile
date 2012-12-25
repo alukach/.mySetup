@@ -20,6 +20,9 @@ if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/sbin:$PATH
     export PATH=/usr/local/share/python:$PATH
 
+    PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
+    export PYTHONPATH
+
     # Mac Colors
     export CLICOLOR=1
     export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -60,6 +63,9 @@ alias l="ls -al"
 alias lp="ls -p"
 alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
+
+# django
+alias pm="python manage.py"
 
 # virtualenv aliases
 # http://blog.doughellmann.com/2010/01/virtualenvwrapper-tips-and-tricks.html
