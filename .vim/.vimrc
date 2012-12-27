@@ -126,7 +126,7 @@ set guitablabel=%t
 
 " Tabs
 nmap <C-t> :tabnew<CR>
-nmap <C-y> :tabnew .<CR>
+nmap <leader>t :tabnew .<CR>
 nmap - :tabp<cr>
 nmap = :tabn<cr>
 " Move tabs
