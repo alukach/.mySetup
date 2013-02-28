@@ -64,6 +64,7 @@ alias lp="ls -p"
 alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
 alias datafart='curl --data-binary @- datafart.com | xargs open'
+alias reload='source ~/.bash_profile'
 
 # django
 alias pm="python manage.py"
@@ -80,6 +81,28 @@ alias v.add2virtualenv='add2virtualenv'
 alias v.cdsitepackages='cdsitepackages'
 alias v.cd='cdvirtualenv'
 alias v.lssitepackages='lssitepackages'
+
+# CD is now silent pushd
+cd()
+{
+  if [ $# -eq 0 ]; then
+    DIR="${HOME}"
+  else
+    DIR="$1"
+  fi
+
+  builtin pushd "${DIR}" > /dev/null
+}
+
+# Take you back without popd
+back()
+{
+  builtin pushd > /dev/null
+  dirs
+}
+
+alias p='popd'
+alias b='back' 
 
 #if [ -f `brew --prefix`/etc/bash_completion ]; then
 #  . `brew --prefix`/etc/bash_completion
