@@ -65,6 +65,7 @@ alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
 alias datafart='curl --data-binary @- datafart.com | xargs open'
 alias reload='source ~/.bash_profile'
+alias grep='grep --color --line-number --no-messages'
 
 # django
 alias pm="python manage.py"
@@ -93,14 +94,12 @@ cd()
 
   builtin pushd "${DIR}" > /dev/null
 }
-
 # Take you back without popd
 back()
 {
   builtin pushd > /dev/null
   dirs
 }
-
 alias p='popd'
 alias b='back' 
 
