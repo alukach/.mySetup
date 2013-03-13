@@ -29,8 +29,8 @@ if [[ $platform == 'mac' ]]; then
 
     # EC2
     export JAVA_HOME="$(/usr/libexec/java_home)"
-    export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-    export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
+    #export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
+    #export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
     export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
     #VirtualEnvWrapper
@@ -40,7 +40,7 @@ if [[ $platform == 'mac' ]]; then
     export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
     export PIP_RESPECT_VIRTUALENV=true
-    
+
     if [[ -r /usr/local/share/python/virtualenvwrapper.sh ]]; then
         source /usr/local/share/python/virtualenvwrapper.sh
     else
@@ -64,7 +64,7 @@ alias lp="ls -p"
 alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
 alias datafart='curl --data-binary @- datafart.com | xargs open'
-alias reload='source ~/.bash_profile'
+alias reload='. $HOME/.bash_profile'
 alias grep='grep --color --line-number --no-messages'
 
 # django
