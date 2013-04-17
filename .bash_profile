@@ -86,8 +86,13 @@ alias v.cd='cdvirtualenv'
 alias v.lssitepackages='lssitepackages'
 
 alias g.s='git status'
+alias g.a='git add'
+alias g.d='git diff'
 alias g.ps='git push'
 alias g.pl='git pull'
+alias g.c='git commit'
+alias g.reset='git reset HEAD'
+alias g.chout='git checkout --'
 
 # CD is now silent pushd
 cd()
