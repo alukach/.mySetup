@@ -85,6 +85,7 @@ alias v.cdsitepackages='cdsitepackages'
 alias v.cd='cdvirtualenv'
 alias v.lssitepackages='lssitepackages'
 
+# git
 alias g.s='git status'
 alias g.a='git add'
 alias g.d='git diff'
