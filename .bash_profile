@@ -85,6 +85,10 @@ alias v.cdsitepackages='cdsitepackages'
 alias v.cd='cdvirtualenv'
 alias v.lssitepackages='lssitepackages'
 
+alias g.s='git status'
+alias g.ps='git push'
+alias g.pl='git pull'
+
 # CD is now silent pushd
 cd()
 {
@@ -104,6 +108,14 @@ back()
 }
 alias p='popd'
 alias b='back' 
+
+# Drop connections to DB
+killdb() {
+    echo "Dropping all active connections to $1"
+    echo "SELECT pg_terminate_backend(pg_stat_activity.pid)
+          FROM pg_stat_activity
+          WHERE pg_stat_activity.datname = '$1'" | psql
+}
 
 #if [ -f `brew --prefix`/etc/bash_completion ]; then
 #  . `brew --prefix`/etc/bash_completion
