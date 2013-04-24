@@ -87,10 +87,11 @@ alias v.lssitepackages='lssitepackages'
 
 alias g.s='git status'
 alias g.a='git add'
+alias g.rm='git rm'
 alias g.d='git diff'
 alias g.ps='git push'
 alias g.pl='git pull'
-alias g.c='git commit'
+alias g.c='git commit -m'
 alias g.reset='git reset HEAD'
 alias g.chout='git checkout --'
 
