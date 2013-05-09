@@ -13,6 +13,16 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
    platform='freebsd'
 fi
 
+if [[ $platform == 'linux' ]]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+    export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+    export PIP_VIRTUALENV_BASE=$WORKON_HOME
+    export PIP_RESPECT_VIRTUALENV=true
+    
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
 # Rearrange Python path to point to newer Python install (http://www.thisisthegreenroom.com/2011/installing-python-numpy-scipy-matplotlib-and-ipython-on-lion/)
 if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/Cellar:$PATH
