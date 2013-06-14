@@ -71,13 +71,13 @@ fi
 
 # aliases
 alias cd..="cd .."
-alias l="ls -al"
+alias l="ls -lah"
 alias lp="ls -p"
 alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
 alias datafart='curl --data-binary @- datafart.com | xargs open'
 alias reload='. $HOME/.bash_profile'
-alias grep='grep --color --line-number --no-messages'
+#alias grep='grep --color --line-number --no-messages'
 
 # django
 alias pm="python manage.py"
@@ -129,7 +129,7 @@ alias p='popd'
 alias b='back' 
 
 # Drop connections to DB
-killdb() {
+killdbcnxn() {
     echo "Dropping all active connections to $1"
     echo "SELECT pg_terminate_backend(pg_stat_activity.pid)
           FROM pg_stat_activity
@@ -196,3 +196,4 @@ fi
 if [[ -a $HOME/.local_bash_profile ]]; then
     . $HOME/.local_bash_profile
 fi
+alias pythong='open "http://www.pythong.com"'
