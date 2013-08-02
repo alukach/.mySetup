@@ -28,7 +28,7 @@ if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/Cellar:$PATH
     export PATH=/usr/local/bin:$PATH
     export PATH=/usr/local/sbin:$PATH
-    export PATH=/usr/local/share/python:$PATH
+    #export PATH=/usr/local/share/python:$PATH
 
     PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
     export PYTHONPATH
@@ -99,6 +99,7 @@ alias v.lssitepackages='lssitepackages'
 alias g.s='git status'
 alias g.a='git add'
 alias g.rm='git rm'
+alias g.mv='git mv'
 alias g.d='git diff'
 alias g.b='git bisect'
 alias g.ps='git push'
@@ -107,6 +108,7 @@ alias g.cm='git commit -m'
 alias g.co='git checkout'
 alias g.reset='git reset HEAD'
 alias g.chout='git checkout --'
+alias g.f='git fetch origin'
 
 # CD is now silent pushd
 cd()
