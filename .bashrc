@@ -16,11 +16,6 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
 fi
 
 
-if [[ $platform == 'linux' ]]; then
-    export WORKON_HOME='/home/projects/environments'
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
