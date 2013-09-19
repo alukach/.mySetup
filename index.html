@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>.mysetup by alukach</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>.mysetup</h1>
+        <h2>A set of scripts designed to set up a clean Desktop or Server Ubuntu installation with preferred software and settings</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/alukach/.mySetup/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/alukach/.mySetup/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/alukach/.mySetup" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="mysetup-script-set" class="anchor" href="#mysetup-script-set"><span class="octicon octicon-link"></span></a>mySetup Script Set</h1>
+
+<p>These scripts set up a Desktop or Server version of Ubuntu with preferred software and settings.</p>
+
+<p>To run setup scripts, copy and paste the following script into your home directory (<code>~/</code>), run <code>chmod a+x script.sh</code>, and then execute the script.  This will clone this repo, from which you can run either the <code>serverStartup.sh</code> or the <code>desktopStartup.sh</code> scripts.</p>
+
+<pre><code>#!/bin/bash
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+
+if [ ! -e "~/.ssh/id_rsa.pub" ]; # If there are no keys created 
+then 
+  ssh-keygen -t rsa -C "anthonylukach@gmail.com" -N '' -f ~/.ssh/id_rsa # Generate key with no password 
+fi 
+
+sudo apt-get -y install git git-core git-gui git-doc # Distributed Revision Control / Source Code Management
+
+git config --global user.name "Anthony Lukach"
+git config --global user.email "anthonylukach@gmail.com"
+git config --global credential.helper 'cache --timeout=3600'
+
+echo "Before we continue, register this key with your github account (https://github.com/settings/ssh), then press any key 
+" 
+cat ~/.ssh/id_rsa.pub 
+read 
+
+cd ~/ 
+git clone git@github.com:alukach/.mySetup.git
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
