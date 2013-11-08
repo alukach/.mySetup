@@ -123,7 +123,13 @@ alias g.f='git fetch origin'
 
 # mercurial
 alias h.s='hg status'
+alias h.a='hg add'
+alias h.rm='hg remove'
+alias h.pl='hg pull'
+alias h.ps='hg push'
+alias h.cm='hg commit'
 alias h.b='hg branch'
+alias h.d='hg diff'
 
 # CD is now silent pushd
 cd()
@@ -152,6 +158,9 @@ killdbcnxn() {
           FROM pg_stat_activity
           WHERE pg_stat_activity.datname = '$1'" | psql
 }
+
+# Pretty print JSON. To be piped to, such as: echo '{"foo": "lorem", "bar": "ipsum"}' | prettyjson
+alias prettyjson='python -m json.tool'
 
 # Import local settings (i.e. things not to be placed on Github)
 if [[ -a $HOME/.local_bash_profile ]]; then
