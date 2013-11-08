@@ -85,6 +85,8 @@ alias reload='. $HOME/.bash_profile'
 
 # django
 alias pm="python manage.py"
+alias pmrs="python manage.py runserver_plus"
+alias pmsp="python manage.py shell_plus"
 
 # virtualenv aliases
 # http://blog.doughellmann.com/2010/01/virtualenvwrapper-tips-and-tricks.html
