@@ -70,6 +70,11 @@ if [[ $platform == 'mac' ]]; then
     function fulltree(){
       find $1 -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
     }
+
+    # Bash completion for brew?
+    if [ -f `brew --prefix`/etc/bash_completion ]; then
+      . `brew --prefix`/etc/bash_completion
+    fi
 fi
 
 
@@ -147,10 +152,6 @@ killdbcnxn() {
           FROM pg_stat_activity
           WHERE pg_stat_activity.datname = '$1'" | psql
 }
-
-#if [ -f `brew --prefix`/etc/bash_completion ]; then
-#  . `brew --prefix`/etc/bash_completion
-#fi
 
 # Import local settings (i.e. things not to be placed on Github)
 if [[ -a $HOME/.local_bash_profile ]]; then
