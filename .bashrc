@@ -160,7 +160,7 @@ killdbcnxn() {
 }
 
 # Pretty print JSON. To be piped to, such as: echo '{"foo": "lorem", "bar": "ipsum"}' | prettyjson
-alias prettyjson='python -m json.tool'
+alias purtyjson='python -m json.tool'
 
 # Import local settings (i.e. things not to be placed on Github)
 if [[ -a $HOME/.local_bash_profile ]]; then
