@@ -151,13 +151,25 @@ back()
 alias p='popd'
 alias b='back' 
 
-# Drop connections to DB
-killdbcnxn() {
-    echo "Dropping all active connections to $1"
-    echo "SELECT pg_terminate_backend(pg_stat_activity.pid)
-          FROM pg_stat_activity
-          WHERE pg_stat_activity.datname = '$1'" | psql
+# Generic SQL runner for PSQL
+pg_sql_runner() {
+    echo " COMMAND"
+    echo "------------------"
+    echo -e ' ' $1 '\n'
+        
+    echo $1 | psql
 }
+# Drop connections to DB (Only works for Postgresql 9.2+
+pg_killdbcnxn() {
+    pg_sql_runner "SELECT pg_terminate_backend(pg_stat_activity.pid)
+          FROM pg_stat_activity
+          WHERE pg_stat_activity.datname = '$1'"
+}
+# View activity of all DBs
+pg_activity() {
+    pg_sql_runner "SELECT datname,procpid,current_query FROM pg_stat_activity;" 
+}
+
 
 # Pretty print JSON. To be piped to, such as: echo '{"foo": "lorem", "bar": "ipsum"}' | prettyjson
 alias purtyjson='python -m json.tool'
