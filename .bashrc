@@ -59,6 +59,8 @@ if [[ $platform == 'mac' ]]; then
 
     if [[ -r /usr/local/share/python/virtualenvwrapper.sh ]]; then
         source /usr/local/share/python/virtualenvwrapper.sh
+    elif [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
+        source /usr/local/bin/virtualenvwrapper.sh
     else
         echo "WARNING: Can't find virtualenvwrapper.sh"
     fi
