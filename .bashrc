@@ -34,6 +34,9 @@ if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/sbin:$PATH
     #export PATH=/usr/local/share/python:$PATH
 
+    # Postgresql
+    export PGDATA=/usr/local/var/postgres
+
     PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
     export PYTHONPATH
 
