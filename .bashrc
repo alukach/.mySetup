@@ -91,6 +91,7 @@ alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
 alias datafart='curl --data-binary @- datafart.com | xargs open'
 alias reload='. $HOME/.bash_profile'
+alias whatsmyip='curl -s icanhazip.com'
 #alias grep='grep --color --line-number --no-messages'
 
 # django
