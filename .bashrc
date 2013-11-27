@@ -94,7 +94,7 @@ alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram:
 alias datafart='curl --data-binary @- datafart.com | xargs open'
 alias reload='. $HOME/.bash_profile'
 alias whatsmyip='curl -s icanhazip.com'
-alias clean_pyc='find . -name *.pyc -exec rm {} \;'
+alias clean_pyc="find . -name '*.pyc' -exec rm {} \;"
 #alias grep='grep --color --line-number --no-messages'
 
 # django
