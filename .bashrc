@@ -88,6 +88,8 @@ fi
 # aliases
 alias cd..="cd .."
 alias l="ls -lah"
+alias ll='ls -alF'
+alias la='ls -A'
 alias lp="ls -p"
 alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
@@ -303,11 +305,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
