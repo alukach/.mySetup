@@ -23,7 +23,7 @@ if [[ $platform == 'linux' ]]; then
     export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
     export PIP_RESPECT_VIRTUALENV=true
-    
+
     if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
         source /usr/local/bin/virtualenvwrapper.sh
     fi
@@ -35,6 +35,9 @@ if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/bin:$PATH
     export PATH=/usr/local/sbin:$PATH
     #export PATH=/usr/local/share/python:$PATH
+
+    # Ruby
+    export PATH=$PATH:/usr/local/opt/ruby/bin
 
     # Postgresql
     export PGDATA=/usr/local/var/postgres
@@ -82,6 +85,17 @@ if [[ $platform == 'mac' ]]; then
     if [ -f `brew --prefix`/etc/bash_completion ]; then
       . `brew --prefix`/etc/bash_completion
     fi
+
+    function ssh-mount(){
+        if hash sshfs 2>/dev/null; then
+            mkdir /Volumes/$1
+            sshfs anthony@$1:/ /Volumes/$1/
+            echo /Volumes/$1/
+        fi
+    }
+
+    alias restart_airplay='sudo pkill coreaudiod'
+
 fi
 
 
@@ -95,7 +109,7 @@ alias datafart='curl --data-binary @- datafart.com | xargs open'
 alias reload='. $HOME/.bash_profile'
 alias whatsmyip='curl -s icanhazip.com'
 alias clean_pyc="find . -name '*.pyc' -exec rm {} \;"
-#alias grep='grep --color --line-number --no-messages'
+alias grep='grep --color --no-messages'
 
 # django
 alias pm="python manage.py"
@@ -139,6 +153,7 @@ alias h.ps='hg push'
 alias h.cm='hg commit'
 alias h.b='hg branch'
 alias h.d='hg diff'
+alias clean_orig="find . -name '*.orig' -exec rm {} \;"
 
 # CD is now silent pushd
 cd()
@@ -158,14 +173,14 @@ back()
   dirs
 }
 alias p='popd'
-alias b='back' 
+alias b='back'
 
 # Generic SQL runner for PSQL
 pg_sql_runner() {
     echo " COMMAND"
     echo "------------------"
     echo -e ' ' $1 '\n'
-        
+
     echo $1 | psql
 }
 # Drop connections to DB (Only works for Postgresql 9.2+
@@ -176,7 +191,7 @@ pg_killdbcnxn() {
 }
 # View activity of all DBs
 pg_activity() {
-    pg_sql_runner "SELECT datname,procpid,current_query FROM pg_stat_activity;" 
+    pg_sql_runner "SELECT datname,procpid,current_query FROM pg_stat_activity;"
 }
 
 
