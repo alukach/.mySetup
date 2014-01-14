@@ -102,6 +102,8 @@ fi
 # aliases
 alias cd..="cd .."
 alias l="ls -lah"
+alias ll='ls -alF'
+alias la='ls -A'
 alias lp="ls -p"
 alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
@@ -110,11 +112,22 @@ alias reload='. $HOME/.bash_profile'
 alias whatsmyip='curl -s icanhazip.com'
 alias clean_pyc="find . -name '*.pyc' -exec rm {} \;"
 alias grep='grep --color --no-messages'
+highlight() {
+    ack-grep $1 --passthru
+}
 
 # django
 alias pm="python manage.py"
 alias pmrs="python manage.py runserver_plus"
 alias pmsp="python manage.py shell_plus"
+thermonucleardestruction() {
+    dropdb $1 &&
+    createdb $1 &&
+    psql $1 -x -c "CREATE EXTENSION postgis;" &&
+    psql $1 -x -c "CREATE EXTENSION hstore;"  &&
+    python manage.py syncdb &&
+    python manage.py migrate
+}
 
 # virtualenv aliases
 # http://blog.doughellmann.com/2010/01/virtualenvwrapper-tips-and-tricks.html
@@ -144,6 +157,27 @@ alias g.reset='git reset HEAD'
 alias g.chout='git checkout --'
 alias g.f='git fetch origin'
 
+# gist
+# https://gist.github.com/caspyin/2288960
+gist() {
+    for arg
+    do
+        if [[ -z "$output" ]]; then
+            output="{"
+        else
+            output="$output, "
+        fi
+        file=`cat $arg`
+        # TODO: NEED TO SANITIZE FILE
+        output="$output\"$arg\":{\"content\":\"$file\"}"
+    done
+    output="$output}"
+    payload="{\"description\":\"Created via API\",\"public\":\"true\",        \"files\":$output}"
+    #echo $payload | json_pp
+
+    curl --data "$payload" https://api.github.com/gists | python -c 'import sys, json; print json.load(sys.stdin)[sys.argv[1]]'      "html_url"
+    output=''
+}
 # mercurial
 alias h.s='hg status'
 alias h.a='hg add'
@@ -185,7 +219,7 @@ pg_sql_runner() {
 }
 # Drop connections to DB (Only works for Postgresql 9.2+
 pg_killdbcnxn() {
-    pg_sql_runner "SELECT pg_terminate_backend(pg_stat_activity.pid)
+    pg_sql_runner "SELECT pg_terminate_backend(pg_stat_activity.procpid)
           FROM pg_stat_activity
           WHERE pg_stat_activity.datname = '$1'"
 }
@@ -193,7 +227,6 @@ pg_killdbcnxn() {
 pg_activity() {
     pg_sql_runner "SELECT datname,procpid,current_query FROM pg_stat_activity;"
 }
-
 
 # Pretty print JSON. To be piped to, such as: echo '{"foo": "lorem", "bar": "ipsum"}' | prettyjson
 alias purtyjson='python -m json.tool'
@@ -288,11 +321,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
