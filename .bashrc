@@ -23,7 +23,7 @@ if [[ $platform == 'linux' ]]; then
     export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
     export PIP_RESPECT_VIRTUALENV=true
-    
+
     if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
         source /usr/local/bin/virtualenvwrapper.sh
     fi
@@ -104,11 +104,11 @@ alias pm="python manage.py"
 alias pmrs="python manage.py runserver_plus"
 alias pmsp="python manage.py shell_plus"
 thermonucleardestruction() {
-    dropdb $1 && 
-    createdb $1 && 
-    psql $1 -x -c "CREATE EXTENSION postgis;" && 
-    psql $1 -x -c "CREATE EXTENSION hstore;"  && 
-    python manage.py syncdb && 
+    dropdb $1 &&
+    createdb $1 &&
+    psql $1 -x -c "CREATE EXTENSION postgis;" &&
+    psql $1 -x -c "CREATE EXTENSION hstore;"  &&
+    python manage.py syncdb &&
     python manage.py migrate
 }
 
@@ -143,13 +143,13 @@ alias g.f='git fetch origin'
 # gist
 # https://gist.github.com/caspyin/2288960
 gist() {
-    for arg 
-    do  
+    for arg
+    do
         if [[ -z "$output" ]]; then
             output="{"
         else
             output="$output, "
-        fi  
+        fi
         file=`cat $arg`
         # TODO: NEED TO SANITIZE FILE
         output="$output\"$arg\":{\"content\":\"$file\"}"
@@ -157,8 +157,8 @@ gist() {
     output="$output}"
     payload="{\"description\":\"Created via API\",\"public\":\"true\",        \"files\":$output}"
     #echo $payload | json_pp
-        
-    curl --data "$payload" https://api.github.com/gists | python -c 'import sys, json; print json.load(sys.stdin)[sys.argv[1]]'      "html_url" 
+
+    curl --data "$payload" https://api.github.com/gists | python -c 'import sys, json; print json.load(sys.stdin)[sys.argv[1]]'      "html_url"
     output=''
 }
 # mercurial
@@ -170,6 +170,7 @@ alias h.ps='hg push'
 alias h.cm='hg commit'
 alias h.b='hg branch'
 alias h.d='hg diff'
+alias h.mv='hg mv'
 
 # CD is now silent pushd
 cd()
@@ -189,14 +190,14 @@ back()
   dirs
 }
 alias p='popd'
-alias b='back' 
+alias b='back'
 
 # Generic SQL runner for PSQL
 pg_sql_runner() {
     echo " COMMAND"
     echo "------------------"
     echo -e ' ' $1 '\n'
-        
+
     echo $1 | psql
 }
 # Drop connections to DB (Only works for Postgresql 9.2+
@@ -207,7 +208,7 @@ pg_killdbcnxn() {
 }
 # View activity of all DBs
 pg_activity() {
-    pg_sql_runner "SELECT datname,procpid,current_query FROM pg_stat_activity;" 
+    pg_sql_runner "SELECT datname,procpid,current_query FROM pg_stat_activity;"
 }
 
 # Pretty print JSON. To be piped to, such as: echo '{"foo": "lorem", "bar": "ipsum"}' | prettyjson
