@@ -36,6 +36,9 @@ if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/sbin:$PATH
     #export PATH=/usr/local/share/python:$PATH
 
+    # Ruby
+    export PATH=$PATH:/usr/local/opt/ruby/bin
+
     # Postgresql
     export PGDATA=/usr/local/var/postgres
 
@@ -82,12 +85,25 @@ if [[ $platform == 'mac' ]]; then
     if [ -f `brew --prefix`/etc/bash_completion ]; then
       . `brew --prefix`/etc/bash_completion
     fi
+
+    function ssh-mount(){
+        if hash sshfs 2>/dev/null; then
+            mkdir /Volumes/$1
+            sshfs anthony@$1:/ /Volumes/$1/
+            echo /Volumes/$1/
+        fi
+    }
+
+    alias restart_airplay='sudo pkill coreaudiod'
+
 fi
 
 
 # aliases
 alias cd..="cd .."
 alias l="ls -lah"
+alias ll='ls -alF'
+alias la='ls -A'
 alias lp="ls -p"
 alias h=history
 alias ramdisk='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://8165430`'
@@ -95,10 +111,11 @@ alias datafart='curl --data-binary @- datafart.com | xargs open'
 alias reload='. $HOME/.bash_profile'
 alias whatsmyip='curl -s icanhazip.com'
 alias clean_pyc="find . -name '*.pyc' -exec rm {} \;"
-alias grep='grep --color --line-number --no-messages'
+alias grep='grep --color --no-messages'
 highlight() {
     ack-grep $1 --passthru
 }
+
 # django
 alias pm="python manage.py"
 alias pmrs="python manage.py runserver_plus"
