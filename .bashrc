@@ -159,6 +159,17 @@ alias g.co='git checkout'
 alias g.reset='git reset HEAD'
 alias g.chout='git checkout --'
 alias g.f='git fetch origin'
+alias g.t='git tag'
+g.retag() {
+  git tag -d $1 &&
+  git tag $1
+}
+g.retag_remote() {
+  git tag -d $1 &&
+  git push origin :refs/tags/$1 &&
+  git tag $1 &&
+  git push --tags
+}
 
 # gist
 # https://gist.github.com/caspyin/2288960
