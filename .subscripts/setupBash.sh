@@ -8,6 +8,9 @@ then
   mv ~/.bashrc ~/.mySetup/.backups
 fi
 ln -s ~/.mySetup/.bashrc ~/
+ln -s ~/.mySetup/.git-prompt.sh ~/
+
+
 source `cd $1; pwd`/.bashrc
 
 # .bash_profile

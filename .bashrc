@@ -95,6 +95,11 @@ if [[ $platform == 'mac' ]]; then
 
 fi
 
+# Bash completion for git
+if [ -f ~/.git-prompt.sh ]; then
+  . ~/.git-prompt.sh
+fi
+
 
 # aliases
 alias cd..="cd .."
@@ -306,7 +311,48 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    get_sha() {
+      git rev-parse --short HEAD 2>/dev/null
+    }
+
+    # ANSI color codes
+    RS="\[\033[0m\]"    # reset
+    HC="\[\033[1m\]"    # hicolor
+    UL="\[\033[4m\]"    # underline
+    INV="\[\033[7m\]"   # inverse background and foreground
+    FBLK="\[\033[30m\]" # foreground black
+    FRED="\[\033[31m\]" # foreground red
+    FGRN="\[\033[32m\]" # foreground green
+    FYEL="\[\033[33m\]" # foreground yellow
+    FBLE="\[\033[34m\]" # foreground blue
+    FMAG="\[\033[35m\]" # foreground magenta
+    FCYN="\[\033[36m\]" # foreground cyan
+    FWHT="\[\033[37m\]" # foreground white
+    BBLK="\[\033[40m\]" # background black
+    BRED="\[\033[41m\]" # background red
+    BGRN="\[\033[42m\]" # background green
+    BYEL="\[\033[43m\]" # background yellow
+    BBLE="\[\033[44m\]" # background blue
+    BMAG="\[\033[45m\]" # background magenta
+    BCYN="\[\033[46m\]" # background cyan
+    BWHT="\[\033[47m\]" # background white
+
+    GIT_PS1_SHOWDIRTYSTATE=1      # Unstaged (*) and staged (+) changes will be shown next to the branch
+    GIT_PS1_SHOWSTASHSTATE=       # If something is stashed, then a '$' will be shown next to the branch name
+    GIT_PS1_SHOWUNTRACKEDFILES=1  # If there're untracked files, then a '%' will be shown next to the branch name
+
+    # Explicitly unset color (default anyhow). Use 1 to set it.
+    GIT_PS1_SHOWCOLORHINTS=1
+    GIT_PS1_DESCRIBE_STYLE="branch"
+    GIT_PS1_SHOWUPSTREAM=   # If difference between HEAD and its upstream, "<" indicates you are behind, ">" indicates you are ahead, "<>" indicates you have diverged and "=" indicates that there is no difference
+
+    status_face="\`if [ \$? = 0 ]; then echo ${FGRN}^_^; else echo ${FRED}O_O; fi\`${RS}"
+    git_branch="${FMAG}\$(__git_ps1 ' {%s $(get_sha)}')${RS}"
+    user_machine="${HC}${FGRN}\u@\H${RS}"
+    rel_path="${HC}${FBLE}\w${RS}"
+
+    PS1="${user_machine}:${rel_path}${git_branch}\n${status_face}${RS} \\$ "
+    PS2="  ... "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
