@@ -29,12 +29,10 @@ if [[ $platform == 'linux' ]]; then
     fi
 fi
 
-# Rearrange Python path to point to newer Python install (http://www.thisisthegreenroom.com/2011/installing-python-numpy-scipy-matplotlib-and-ipython-on-lion/)
 if [[ $platform == 'mac' ]]; then
     export PATH=/usr/local/Cellar:$PATH
     export PATH=/usr/local/bin:$PATH
     export PATH=/usr/local/sbin:$PATH
-    #export PATH=/usr/local/share/python:$PATH
 
     # Ruby
     export PATH=$PATH:/usr/local/opt/ruby/bin
@@ -57,8 +55,7 @@ if [[ $platform == 'mac' ]]; then
         export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
     fi
 
-    #VirtualEnvWrapper
-    # Setting up the VirtualEnv
+    # VirtualEnvWrapper
     export WORKON_HOME=$HOME/.virtualenvs
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
     export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
@@ -316,13 +313,13 @@ fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
