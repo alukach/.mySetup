@@ -145,7 +145,7 @@ alias v.lssitepackages='lssitepackages'
 
 # git
 alias g.s='git status'
-alias g.a='git add'
+alias g.a='git add --all'
 alias g.rm='git rm'
 alias g.m='git merge'
 alias g.mv='git mv'
