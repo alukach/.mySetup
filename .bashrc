@@ -172,6 +172,20 @@ g.retag_remote() {
   git tag $1 &&
   git push --tags
 }
+g.merge_upstream() {
+    git fetch origin
+    git checkout prod
+    git merge origin/prod --no-edit
+
+    git checkout stag
+    git merge origin/stag --no-edit
+    git merge prod --no-edit
+
+    git checkout dev
+    git merge origin/dev --no-edit
+    git merge stag --no-edit
+    git push origin
+}
 
 # gist
 # https://gist.github.com/caspyin/2288960
@@ -347,11 +361,12 @@ if [ "$color_prompt" = yes ]; then
     GIT_PS1_SHOWUPSTREAM=   # If difference between HEAD and its upstream, "<" indicates you are behind, ">" indicates you are ahead, "<>" indicates you have diverged and "=" indicates that there is no difference
 
     status_face="\`if [ \$? = 0 ]; then echo ${FGRN}^_^; else echo ${FRED}O_O; fi\`${RS}"
+    status_num="\`if [ \$? = 0 ]; then echo ${FGRN}\$; else echo ${FRED}\$; fi\`${RS}"
     git_branch="${FMAG}\$(__git_ps1 ' {%s $(get_sha)}')${RS}"
     user_machine="${HC}${FGRN}\u@\H${RS}"
     rel_path="${HC}${FBLE}\w${RS}"
 
-    PS1="${user_machine}:${rel_path}${git_branch}\n${status_face}${RS} \\$ "
+    PS1="${user_machine}:${rel_path}${git_branch}\n${status_num}${RS} "
     PS2="  ... "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
