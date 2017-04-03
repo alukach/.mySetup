@@ -118,6 +118,10 @@ alias grep='grep --color --no-messages'
 highlight() {
     ack-grep $1 --passthru
 }
+# alias backup_db='createdb "${1}_bkp" -T $1'
+backupdb() {
+    createdb "${1}_bkp" -T $1
+}
 
 # django
 alias pm="python manage.py"
@@ -186,6 +190,9 @@ g.merge_upstream() {
     git merge stag --no-edit
     git push origin
 }
+g.cleanup() {
+    git branch --merged | grep -v "\*" | grep -v prod | grep -v dev | xargs -n 1 git branch -d
+}
 
 # gist
 # https://gist.github.com/caspyin/2288960
@@ -238,6 +245,11 @@ back()
 }
 alias p='popd'
 alias b='back'
+
+forever()
+{
+    while true; do $@; sleep .5; done
+}
 
 # Generic SQL runner for PSQL
 pg_sql_runner() {
